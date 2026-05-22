@@ -70,6 +70,11 @@ ALL CAPS.
 - Counter format: `0 / 300`
 
 ### Error messages
+- **Surface only what the user can act on.** Technical details (error codes, stack
+  traces, system states, internal IDs) belong in logs, not in UI copy. The UI message
+  answers exactly two questions: "What can't I do right now?" and "What do I do next?"
+  If neither has a clear answer yet, use the minimal fallback:
+  `Something went wrong. Try again, or contact support if the issue persists.`
 - State the fact + the fix. Format: `[What went wrong]. [How to resolve].`
   - Good: `No long type fields found in this topic. Select another topic to continue.`
   - Bad: `Error! Please select a valid topic.`
@@ -152,6 +157,19 @@ When you catch any of these in a review, replace them.
 | Title Case For All The Words | Sentence case |
 
 ---
+
+## Tone calibration (do this first)
+
+Before generating copy, determine the audience from context:
+1. Check for explicit signals: product name, feature name, user type mentioned
+   (e.g. "data engineer", "marketing user", "admin console", "pipeline")
+2. If the copy type makes the audience obvious, proceed without asking
+   (destructive dialogs → always enterprise-neutral; onboarding → default SaaS)
+3. If audience is genuinely ambiguous after step 1–2, ask exactly ONE question
+   before generating: "Is this for a technical user (engineer, admin) or a
+   business user (analyst, marketer)?" — then generate immediately after the answer.
+
+Default when unknown: plain language + tooltip for jargon.
 
 ## Tone by audience
 
