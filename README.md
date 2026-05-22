@@ -1,0 +1,31 @@
+# ux-skills
+
+Claude Code skills for UX design work.
+
+Each skill lives in its own subdirectory with a `SKILL.md`.
+Install any skill via the Claude Code skill installer.
+
+---
+
+## Skills
+
+| Skill | What it does |
+|-------|-------------|
+| [ux-writing](./ux-writing/) | Write and review UI microcopy — buttons, errors, labels, dialogs, notifications — following a strict rule set (sentence case, no "Please", Permanently delete, etc.) |
+
+---
+
+## Adding a new skill
+
+1. Create a new subdirectory: `mkdir <skill-name>`
+2. Add a `SKILL.md` following the [Claude skill format](https://docs.anthropic.com/en/docs/claude-code/skills)
+3. Package with `python -m scripts.package_skill ./<skill-name>`
+4. Commit and push
+
+---
+
+## Eval results
+
+| Skill | With skill | Baseline | Gap |
+|-------|-----------|---------|-----|
+| ux-writing | 93.8% | 59.4% | +34pp |
