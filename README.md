@@ -13,6 +13,7 @@ Install any skill via the Claude Code skill installer.
 |-------|-------------|
 | [ux-writing](./ux-writing/) | Write and review UI microcopy — buttons, errors, labels, dialogs, notifications — following a strict rule set (sentence case, no "Please", Permanently delete, etc.) |
 | [edge-case-state-mapper](./edge-case-state-mapper/) | 輸入 Happy Path 描述，自動推導遺漏的 UI 狀態（Empty / Loading / Error / Validation / Partial Data / Business Rule），並輸出帶優先級與文案建議的結構化清單 |
+| [a11y-consultant](./a11y-consultant/) | 依 WCAG 2.2 AA/AAA 分兩階段審查：① 設計稿（對比度、色盲模擬、觸控目標 44px）② 程式碼（語意化 HTML、aria、Tab 順序、焦點管理） |
 
 ---
 
