@@ -27,6 +27,13 @@ Install any skill via the Claude Code skill installer.
 | [ux-writing](./ux-writing/) | Write and review UI microcopy — buttons, errors, labels, dialogs, notifications — following a strict rule set (sentence case, no "Please", Permanently delete, etc.) |
 | [visual-hierarchy-checker](./visual-hierarchy-checker/) | 診斷設計稿的視覺層級：CTA 突出度、字型層級系統、色彩使用、空間分組、元素視覺重量，輸出三色燈號優先修正清單 |
 
+### 📊 資料 & 設計系統
+
+| Skill | What it does |
+|-------|-------------|
+| [data-density-optimizer](./data-density-optimizer/) | 評估 B2B SaaS 後台資訊密度，診斷白空間浪費或資訊過載，給出截斷 vs 折行決策、行高規格（Compact/Default/Comfortable/Dense）與極限資料情境測試 |
+| [design-system-manager](./design-system-manager/) | 三合一設計系統工具：① audit — 掃描 hardcoded 值並給出 Token 替換建議 ② document — 輸出元件完整規格文件（Props、States、Token 映射、Do & Don't）③ extend — 規劃新元件加入設計系統 |
+
 ### 🎨 設計決策 & 元件
 
 | Skill | What it does |
@@ -62,3 +69,5 @@ Install any skill via the Claude Code skill installer.
 | design-handoff | 100/100 | — | eval v1 |
 | component-state-specifier | 90/100 | — | eval v1 |
 | visual-hierarchy-checker | 98/100 | — | eval v1 |
+| data-density-optimizer | 90/100 | — | eval v1 |
+| design-system-manager | 100/100 | — | eval v1 |
