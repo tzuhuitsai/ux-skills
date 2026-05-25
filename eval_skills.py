@@ -255,6 +255,7 @@ SKILLS = [
     ("visual-hierarchy-checker",         "visual-hierarchy-checker"),
     ("data-density-optimizer",           "data-density-optimizer"),
     ("design-system-manager",            "design-system-manager"),
+    ("visual-consistency-checker",       "visual-consistency-checker"),
 ]
 
 

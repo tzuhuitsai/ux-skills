@@ -32,7 +32,8 @@ Install any skill via the Claude Code skill installer.
 | Skill | What it does |
 |-------|-------------|
 | [data-density-optimizer](./data-density-optimizer/) | 評估 B2B SaaS 後台資訊密度，診斷白空間浪費或資訊過載，給出截斷 vs 折行決策、行高規格（Compact/Default/Comfortable/Dense）與極限資料情境測試 |
-| [design-system-manager](./design-system-manager/) | 三合一設計系統工具：① audit — 掃描 hardcoded 值並給出 Token 替換建議 ② document — 輸出元件完整規格文件（Props、States、Token 映射、Do & Don't）③ extend — 規劃新元件加入設計系統 |
+| [design-system-manager](./design-system-manager/) | 四合一設計系統工具：① audit — 掃描 hardcoded 值並給出 Token 替換建議 ② document — 輸出元件完整規格文件（Props、States、Token 映射、Do & Don't）③ extend — 規劃新元件加入設計系統 ④ validate — 使用者宣告 Token Contract，驗證設計/程式碼是否完全符合（prototype-first 流程的 source of truth）|
+| [visual-consistency-checker](./visual-consistency-checker/) | 多張截圖輸入，不需要 Figma，找出跨頁面視覺語言不一致：字型層級、色彩語意、元件外觀、間距節奏、互動模式，輸出五維度一致性稽核報告 |
 
 ### 🎨 設計決策 & 元件
 
@@ -71,3 +72,4 @@ Install any skill via the Claude Code skill installer.
 | visual-hierarchy-checker | 98/100 | — | eval v1 |
 | data-density-optimizer | 90/100 | — | eval v1 |
 | design-system-manager | 100/100 | — | eval v1 |
+| visual-consistency-checker | 100/100 | — | eval v1 |
