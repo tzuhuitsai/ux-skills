@@ -253,6 +253,8 @@ SKILLS = [
     ("design-handoff",                   "design-handoff"),
     ("component-state-specifier",        "component-state-specifier"),
     ("visual-hierarchy-checker",         "visual-hierarchy-checker"),
+    ("data-density-optimizer",           "data-density-optimizer"),
+    ("design-system-manager",            "design-system-manager"),
 ]
 
 
