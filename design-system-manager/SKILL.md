@@ -1,30 +1,35 @@
 ---
 name: design-system-manager
 description: |
-  設計系統管理顧問 (Design System Manager) — 三合一 skill，涵蓋設計系統的三種核心任務：
+  設計系統管理顧問 (Design System Manager) — 四合一 skill，涵蓋設計系統的四種核心任務：
   ① audit — 掃描設計稿或程式碼中的 hardcoded 值（顏色、間距、字型），對照 Token 規範給出替換建議
   ② document — 為設計系統中的元件產出完整規格文件（Props、States、Do & Don't、a11y 要求）
   ③ extend — 規劃新增元件或 Pattern 時的設計決策、與現有系統的相容性，以及 Token 映射
+  ④ validate — 使用者宣告自己的 Token Contract（允許的 token 名稱與對應值），驗證截圖或程式碼是否完全符合該契約；適合 prototype-first 流程，以 token 系統取代 Figma 作為 source of truth
 
   使用此 skill 的時機（積極觸發）：
   - 使用者說「幫我審查設計稿是否有 hardcoded 顏色 / 間距」
   - 使用者說「幫我寫這個元件的設計系統文件」、「幫我記錄這個 Pattern」
   - 使用者說「我要在設計系統裡新增一個 X 元件，要怎麼規劃」
-  - 關鍵詞：「hardcoded」、「Token 有沒有用對」、「元件文件」、「component spec」、「design system audit」、「新增元件到設計系統」、「Design System」
-  - 使用者正在做 Figma Component Library 或 AGENTS.md 維護
+  - 使用者說「我們沒有 Figma，token 系統要怎麼當 source of truth」
+  - 使用者說「prototype 改了很多輪，怎麼確認還符合設計系統規範」
+  - 關鍵詞：「hardcoded」、「Token 有沒有用對」、「元件文件」、「component spec」、「design system audit」、「新增元件到設計系統」、「Design System」、「token contract」、「token 契約」、「validate token」
 
   子命令：
   `/design-system-manager audit [元件名稱 / Figma 連結 / 截圖]`
   `/design-system-manager document [元件名稱]`
   `/design-system-manager extend [新元件 / Pattern 名稱]`
+  `/design-system-manager validate [token contract 宣告 + 截圖或程式碼]`
 
   若無子命令，根據使用者描述的內容自動判斷。
 
   與其他 skills 的邊界：
   - component-state-specifier → 單一元件的六大視覺互動狀態（Hover/Focus/Disabled 等）
   - design-system-manager document → 元件完整規格文件（含 Props、使用時機、Do & Don't）
-  兩者互補，通常一起使用：先用 component-state-specifier 定義狀態，再用 design-system-manager document 整合成完整文件。
-  不觸發條件：使用者問的是「這個元件的 Hover/Focus 狀態怎麼設計」→ 使用 component-state-specifier；問的是「這個畫面有哪些 edge case 沒有處理」→ 使用 edge-case-state-mapper；問的是「要用 Modal 還是 Drawer」→ 使用 interaction-pattern-advisor
+  - visual-consistency-checker → 從多張截圖找跨畫面視覺不一致（不需要 token 定義）
+  - design-system-manager validate → 對照已宣告的 token contract 驗證合規（需要 token 定義）
+  兩者互補：先用 component-state-specifier 定義狀態，再用 design-system-manager document 整合成完整文件。
+  不觸發條件：使用者問的是「這個元件的 Hover/Focus 狀態怎麼設計」→ 使用 component-state-specifier；問的是「多個畫面視覺語言一不一致」→ 使用 visual-consistency-checker；問的是「要用 Modal 還是 Drawer」→ 使用 interaction-pattern-advisor
 ---
 
 # 設計系統管理顧問
@@ -277,6 +282,104 @@ button-transition:          background-color 150ms ease
 
 ---
 
+---
+
+## 模式 D：validate（Token Contract 驗證）
+
+### D-1 Token Contract 宣告格式
+
+使用者在執行 validate 前，需提供 Token Contract——允許使用的 token 名稱與對應的原始值：
+
+```yaml
+# Token Contract 範例（貼入或以檔案提供）
+token-contract:
+  colors:
+    color-interactive-primary: "#3B82F6"
+    color-interactive-primary-hover: "#2563EB"
+    color-text-primary: "#111827"
+    color-text-secondary: "#6B7280"
+    color-bg-surface: "#FFFFFF"
+    color-bg-subtle: "#F9FAFB"
+    color-border-default: "#E5E7EB"
+    semantic-error: "#EF4444"
+    semantic-success: "#22C55E"
+    semantic-warning: "#F59E0B"
+  spacing:
+    spacing-xs: "4px"
+    spacing-sm: "8px"
+    spacing-md: "16px"
+    spacing-lg: "24px"
+    spacing-xl: "32px"
+    spacing-2xl: "48px"
+  typography:
+    font-size-xs: "12px"
+    font-size-sm: "14px"
+    font-size-body: "16px"
+    font-size-lg: "18px"
+    font-size-xl: "20px"
+    font-size-2xl: "24px"
+    font-size-3xl: "30px"
+  radius:
+    radius-sm: "4px"
+    radius-md: "6px"
+    radius-lg: "8px"
+    radius-full: "9999px"
+```
+
+若使用者沒有提供完整 Token Contract，先從截圖或程式碼推斷現有視覺值，輸出「推斷的 Token Contract」請使用者確認後再驗證。
+
+### D-2 驗證邏輯
+
+```
+1. 解析目標（截圖 / 程式碼 / 設計描述）中所有可見的視覺值
+2. 對照 Token Contract：
+   每個值 → 是否在 Contract 中有對應？
+     ├─ YES，且 token 語意正確 → ✅ 合規
+     ├─ YES，但 token 語意不符（如用 spacing 放 font-size）→ 🟡 語意錯誤
+     └─ NO，值不在 Contract 中 → 🔴 Contract 外的值（hardcoded 或 token drift）
+3. 輸出違規清單，依嚴重度排序
+```
+
+**Contract 外的值的三種來源：**
+| 來源 | 說明 | 處理方式 |
+|------|------|---------|
+| Hardcoded 值 | 直接寫死顏色/間距，從未進 token | 替換為 Contract 中最接近的 token |
+| Token drift | 曾是 token，但值被直接修改（如 `var(--color-blue)` 改成 `#3A80F5`）| 回復原始 token 引用 |
+| Contract 未涵蓋 | 設計新增了 Contract 沒有的視覺值 | 決定：加入 Contract，或改用現有 token |
+
+### D-3 輸出格式（validate 模式）
+
+```
+# Token Contract 驗證報告：[畫面 / 元件名稱]
+
+**驗證日期**：[今天日期]
+**Token Contract 版本**：[使用者提供的版本或「推斷版本 v0」]
+**合規狀態**：🔴 不合規 / 🟡 部分合規 / 🟢 完全合規
+**違規項目數**：X 個（🔴 Contract 外: X / 🟡 語意錯誤: X）
+
+---
+
+## 違規清單
+
+| 位置 | 實際值 | 違規類型 | 建議 Token | 嚴重度 |
+|------|-------|---------|-----------|-------|
+| [元素] | `#3A80F5` | Contract 外（疑似 token drift）| `color-interactive-primary (#3B82F6)` | 🔴 |
+| [元素] | `20px` padding | Contract 外（hardcoded）| `spacing-lg (24px)` 或 `spacing-md (16px)` | 🔴 |
+| [元素] | `spacing-xl` 用於 font-size | 語意錯誤 | `font-size-xl (20px)` | 🟡 |
+
+## 需要擴充 Token Contract 的值
+（這些值不在 Contract 中，但可能是合理的新需求）
+| 值 | 出現位置 | 建議動作 |
+|----|---------|---------|
+| `#F0F4FF` | 卡片背景 | 加入 Contract 為 `color-bg-brand-subtle`，或改用 `color-bg-subtle` |
+
+## Contract 健康度
+- **覆蓋率**：X%（Contract 涵蓋的視覺值 / 畫面中所有視覺值）
+- **建議**：[是否需要補充 Contract，或清理不必要的值]
+```
+
+---
+
 ## 輸出格式
 
 依執行模式輸出對應文件：
@@ -286,8 +389,9 @@ button-transition:          background-color 150ms ease
 | **audit** | Token 合規稽核報告，含違規清單與優先修正清單 | 🔴 P0 待修 / 🟡 P1 待修 / 🟢 系統健康 |
 | **document** | 元件規格文件，含 Variants、Props、States、Token 映射、Do & Don't | 🔴 不完整 / 🟡 部分完成 / 🟢 可交付 |
 | **extend** | 新增元件規劃文件，含現有元件評估、設計決策、Token 需求、Open Questions | 🔴 有衝突 / 🟡 需確認 / 🟢 可進設計系統 |
+| **validate** | Token Contract 驗證報告，含合規率、違規清單、Contract 健康度 | 🔴 不合規 / 🟡 部分合規 / 🟢 完全合規 |
 
-各模式詳細輸出格式見上方 A-3、B-8、C-3 章節。
+各模式詳細輸出格式見上方 A-3、B-8、C-3、D-3 章節。
 
 ---
 
