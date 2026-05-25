@@ -256,6 +256,7 @@ SKILLS = [
     ("data-density-optimizer",           "data-density-optimizer"),
     ("design-system-manager",            "design-system-manager"),
     ("visual-consistency-checker",       "visual-consistency-checker"),
+    ("product-ui-advisor",               "product-ui-advisor"),
 ]
 
 
