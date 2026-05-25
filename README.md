@@ -13,7 +13,8 @@ Install any skill via the Claude Code skill installer.
 
 | Skill | What it does |
 |-------|-------------|
-| [product-ux-advisor](./product-ux-advisor/) | 產品開發全流程的 UIUX 一站式入口——智慧調度下方六個專業 skill，並提供：Full Review（完整設計審查）、Phase Guide（Discovery→Launch 各階段交付物）、Handoff Checklist（14 項交付前檢核）、競品 UX 比較框架（七維度） |
+| [product-ux-advisor](./product-ux-advisor/) | UX 層面一站式入口——調度六個 UX skill，提供：Full UX Review、Phase Guide（Discovery→Launch）、Handoff Checklist（14 項）、競品 UX 比較框架（七維度） |
+| [product-ui-advisor](./product-ui-advisor/) | UI 層面一站式入口——調度八個 UI/DS skill，提供：Full UI Review、UI Phase Guide（Explore→Handoff）、UI Handoff Checklist（12 項）、Prototype-First Workflow Guide（含 Token Contract 模板）|
 
 ### 🔬 專業審查
 
@@ -73,3 +74,4 @@ Install any skill via the Claude Code skill installer.
 | data-density-optimizer | 90/100 | — | eval v1 |
 | design-system-manager | 100/100 | — | eval v1 |
 | visual-consistency-checker | 100/100 | — | eval v1 |
+| product-ui-advisor | 100/100 | — | eval v1 |
