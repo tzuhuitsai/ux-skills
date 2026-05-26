@@ -3,18 +3,20 @@ name: component-state-specifier
 description: |
   元件視覺狀態規格產生器 (Component State Specifier) — 輸入一個原子 UI 元件（Button、Input、Toggle、Dropdown、Badge 等），自動輸出該元件所有必備視覺狀態的完整規格，包含：Default、Hover、Focus、Active/Pressed、Disabled、Loading，以及元件特有狀態（Error、Selected、Indeterminate 等）。每個狀態附帶視覺差異描述、Token 對應、CSS transition 參數，以及 ARIA 對應屬性。
 
+  絕不觸發（NEVER）：輸入描述的是一個操作流程、表單行為或頁面場景時，即使流程中出現元件名稱，也不觸發本 skill → 使用 edge-case-state-mapper。例：「表單送出後顯示成功訊息有哪些狀態」→ edge-case-state-mapper。若 prompt 只說「這個元件」而未給出具體元件名稱（Button、Input 等）或互動脈絡，預設不觸發本 skill → 使用 edge-case-state-mapper。
+
   使用此 skill 的時機（積極觸發）：
   - 使用者說「這個按鈕（或輸入框/下拉選單）的各種狀態要怎麼設計」
   - 使用者剛畫好元件的 Default 狀態，詢問「還需要哪些狀態」
   - 使用者準備交付元件到 Figma Component Set，需確保狀態完整
   - 關鍵詞：「元件狀態」、「component state」、「hover 狀態」、「focus 樣式」、「disabled 怎麼設計」、「loading state」、「互動狀態規格」、「Component Set」
   - 使用者在做 Design System 元件文件，需要狀態一覽表
+  - 使用者詢問某元件在極端條件下的視覺行為（如超長文字時 Button label 怎麼截斷、圖示缺失時的 fallback 顯示）→ 這類「元件的 edge case」屬本 skill 範圍
 
   與其他 skills 的邊界：
   - edge-case-state-mapper → 功能 / 流程 / 畫面層面的 UI 狀態（Empty / Loading / Error / Partial Data）
   - component-state-specifier → 單一原子元件視覺互動層面的狀態（本 skill）
-  明確觸發條件：輸入是「一個具體的 UI 元件名稱（Button、Input、Toggle 等）」
-  不觸發條件：輸入是「一個功能、流程、表單、畫面」的狀態問題 → 使用 edge-case-state-mapper
+  明確觸發條件：輸入的主詞是「一個具體的 UI 元件名稱（Button、Input、Toggle 等）」
 ---
 
 # 元件視覺狀態規格產生器

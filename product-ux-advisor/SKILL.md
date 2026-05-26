@@ -2,8 +2,10 @@
 name: product-ux-advisor
 description: |
   產品 UIUX 顧問 (Product UX Advisor) — 產品開發全流程的 UIUX 一站式入口。根據使用者描述的情境，
-  自動調度旗下六個專業 skill（ux-writing、heuristic-audit、a11y-consultant、cognitive-load-audit、
-  flow-friction-analyzer、edge-case-state-mapper），並提供四項獨有能力：
+  自動調度旗下十三個專業 skill（ux-writing、heuristic-audit、a11y-consultant、cognitive-load-audit、
+  flow-friction-analyzer、edge-case-state-mapper、data-density-optimizer、component-state-specifier、
+  visual-hierarchy-checker、design-system-manager、design-handoff、interaction-pattern-advisor、
+  responsive-layout-stress-tester），並提供四項獨有能力：
   ① 完整設計審查（Full Review）：自動判斷應執行哪些 skill 並輸出統整報告
   ② 產品開發階段清單：Discovery → Design → Dev Handoff → Launch → Post-Launch 各階段 UX 交付物
   ③ 設計交付檢核（Handoff Checklist）：交付前的 14 項檢查清單，覆蓋狀態、標注、規格三大維度
@@ -50,6 +52,13 @@ description: |
 | 單一畫面資訊量、Miller's Law、掃描路徑、Fitts 定律 | → **cognitive-load-audit** |
 | 跨畫面任務流程、步驟數、Hick's Law、錯誤恢復路徑 | → **flow-friction-analyzer** |
 | 遺漏的 UI 狀態、empty state、edge case、邊界條件 | → **edge-case-state-mapper** |
+| 資料表格密度、截斷 vs 折行、行高決策、Overflow 問題 | → **data-density-optimizer** |
+| 單一原子元件（Button/Input/Toggle）的 Hover/Focus/Disabled 等視覺狀態規格 | → **component-state-specifier** |
+| 設計稿視覺層級、CTA 突出度、字型層級、空間分組問題 | → **visual-hierarchy-checker** |
+| Token 合規稽核、元件規格文件、設計系統新增元件規劃 | → **design-system-manager** |
+| 設計交付文件編譯（整合各 skill 產出給工程師）| → **design-handoff** |
+| Switch vs Checkbox、Modal vs Drawer 等互動模式選擇決策 | → **interaction-pattern-advisor** |
+| 響應式版面斷點壓力測試（1920/1440/1280/1024px）| → **responsive-layout-stress-tester** |
 
 若問題同時涉及多個 skill，進入 **模式 A：Full Review**。
 
@@ -383,4 +392,11 @@ description: |
 | cognitive-load-audit | 單一畫面資訊量是否過載 | 跨畫面流程效率 |
 | flow-friction-analyzer | 跨畫面任務路徑是否高效 | 單一畫面資訊密度 |
 | edge-case-state-mapper | 遺漏了哪些 UI 狀態 | 已知狀態的設計品質 |
+| data-density-optimizer | 資料密度、截斷 vs 折行、行高規格 | 跨螢幕響應式版面變化 |
+| component-state-specifier | 單一原子元件的六大視覺互動狀態 | 功能/流程層面的 UI 狀態 |
+| visual-hierarchy-checker | 視覺層級、CTA 突出度、字型與空間問題 | 認知負荷量化（Miller's Law）|
+| design-system-manager | Token 合規稽核、元件文件、設計系統擴展 | 元件視覺狀態（用 component-state-specifier）|
+| design-handoff | 整合各 skill 產出成交付文件 | 重新執行任何分析（那是各 skill 的工作）|
+| interaction-pattern-advisor | 選擇用哪個元件 / 互動模式 | 元件選定後的狀態規格設計 |
+| responsive-layout-stress-tester | 跨斷點版面變化與 Auto Layout 極限 | 單一螢幕寬度的資料密度問題 |
 | **product-ux-advisor** | **全流程協調、複合審查、階段指南** | **深度執行每個 skill 的細節規則（那是各 skill 的工作）** |

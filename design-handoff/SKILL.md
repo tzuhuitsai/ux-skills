@@ -8,10 +8,7 @@ description: |
   使用此 skill 的時機（積極觸發）：
   - 使用者說「幫我整理交付文件」、「我要把設計交給工程師了」、「幫我寫 spec」
   - 使用者剛完成所有設計檢查，準備進入實作階段
-  - 使用者說「我需要一份完整的工程規格，含 token、element state、edge case」
-  - 使用者說「這個功能要進 sprint 了，幫我整理一下」
-  - 使用者提供多個 skill 的輸出結果，問「接下來怎麼整合」
-  - 關鍵詞：「design spec」、「交付文件」、「handoff」、「工程規格」、「開發文件」、「整合產出」、「整理給工程師」
+  - 關鍵詞：「design spec」、「交付文件」、「handoff」、「工程規格」、「開發文件」
 
   前置 skills（在執行 design-handoff 前應已完成）：
   - edge-case-state-mapper → 提供 Edge Cases 內容
@@ -20,14 +17,6 @@ description: |
   - data-density-optimizer → 提供密度與截斷規格（若為資料密集頁面）
   - design-system-manager audit → 提供 Token 合規結果（若有 Token 系統）
   - responsive-layout-stress-tester → 提供響應式行為分析（若有跨斷點需求）
-
-  與其他 skills 的邊界：
-  - edge-case-state-mapper → 分析遺漏的 UI 狀態（應在 handoff 前完成）
-  - component-state-specifier → 定義元件的 Hover/Focus/Disabled 規格（應在 handoff 前完成）
-  - a11y-consultant → 無障礙審查（應在 handoff 前完成）
-  - responsive-layout-stress-tester → 響應式壓力測試（應在 handoff 前完成）
-  - design-handoff → 整合以上所有產出，產生工程師交付文件（本 skill）
-  不觸發條件：使用者問的是「這個功能有沒有邊界條件」→ 使用 edge-case-state-mapper；問的是「元件狀態怎麼設計」→ 使用 component-state-specifier；問的是「版面會不會破版」→ 使用 responsive-layout-stress-tester
 
   argument-hint: "<Figma URL、截圖，或設計描述> + 各前置 skill 的輸出（可貼入）"
 ---
@@ -174,18 +163,7 @@ description: |
 **完成日期**：[日期]
 **設計稿連結**：[Figma URL]
 **對應工程 Ticket**：[Ticket ID]
-**整體完整度**：🔴 不完整（有關鍵 skill 未執行）/ 🟡 部分完整 / 🟢 完整可交付
-
-## 前置 skill 完成狀態
-
-| Skill | 狀態 | 備注 |
-|-------|------|------|
-| edge-case-state-mapper | 🟢 已完成 / 🔴 未執行 | [輸出位置或跳過原因] |
-| component-state-specifier | 🟢 已完成 / 🔴 未執行 | [輸出位置或跳過原因] |
-| a11y-consultant | 🟢 已完成 / 🔴 未執行 | [輸出位置或跳過原因] |
-| responsive-layout-stress-tester | 🟢 已完成 / 🔴 未執行 | [輸出位置或跳過原因] |
-| data-density-optimizer | 🟡 選用 / 🔴 未執行 | [僅資料密集頁面需要] |
-| design-system-manager audit | 🟡 選用 / 🔴 未執行 | [僅有 Token 系統需要] |
+**前置 skill 完成狀態**：[列出哪些已完成、哪些跳過]
 
 ---
 

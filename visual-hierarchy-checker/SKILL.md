@@ -10,11 +10,14 @@ description: |
   - 關鍵詞：「視覺層級」、「visual hierarchy」、「主次不清楚」、「CTA 不明顯」、「排版很亂」、「不知道要看哪裡」、「字型層級」、「空間節奏」
   - 設計師做完初稿，想在正式 Review 前先做一次自我檢查
 
+  絕不觸發（NEVER）：使用者核心問題是「資訊量」、「太複雜」、「使用者容易迷失」、「認知負荷」時，即使畫面同時有視覺問題，也不觸發本 skill → 使用 cognitive-load-audit。
+
+  當輸入模糊無關鍵詞（如「這個畫面有什麼問題」）：先詢問使用者核心困擾是「視覺呈現（層級 / 對比 / 排版）」還是「資訊複雜度（量 / 記憶負荷）」，再決定觸發本 skill 或 cognitive-load-audit。
+
   與其他 skills 的邊界：
   - cognitive-load-audit → 「資訊太多 / 太複雜 / 太難記」→ 量化資訊塊數、Miller's Law
   - heuristic-audit → 「可用性問題 / Nielsen 原則」→ 系統性可用性評分
   - visual-hierarchy-checker → 「視覺看起來怪 / 找不到重點 / CTA 不明顯 / 排版亂」→ 本 skill
-  不觸發條件：使用者說「資訊量」、「太複雜」、「認知負荷」→ 使用 cognitive-load-audit
 ---
 
 # 視覺層級快速診斷
