@@ -18,7 +18,7 @@ description: |
   - design-system-manager audit → 提供 Token 合規結果（若有 Token 系統）
   - responsive-layout-stress-tester → 提供響應式行為分析（若有跨斷點需求）
 
-  argument-hint: "<Figma URL、截圖，或設計描述> + 各前置 skill 的輸出（可貼入）"
+  argument-hint: "[Figma URL、截圖，或設計描述] + 各前置 skill 的輸出（可貼入）"
 ---
 
 # 設計交付規格編譯器
