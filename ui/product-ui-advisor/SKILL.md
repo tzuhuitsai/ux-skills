@@ -1,28 +1,15 @@
 ---
 name: product-ui-advisor
 description: |
-  產品 UI 顧問 (Product UI Advisor) — UI 設計與設計系統的一站式調度入口。根據使用者描述的情境，
-  自動調度旗下八個專業 skill（visual-hierarchy-checker、interaction-pattern-advisor、
-  component-state-specifier、responsive-layout-stress-tester、data-density-optimizer、
-  design-system-manager、visual-consistency-checker、design-handoff），並提供四項獨有能力：
-  ① Full UI Review（完整 UI 審查）：自動判斷應執行哪些 skill 並輸出整合報告
+  產品 UI 顧問 (Product UI Advisor) — UI 設計與設計系統的一站式調度入口，根據情境自動調度旗下八個專業 skill（visual-hierarchy-checker、interaction-pattern-advisor、component-state-specifier、responsive-layout-stress-tester、data-density-optimizer、design-system-manager、visual-consistency-checker、design-handoff），並提供四項獨有能力：
+  ① Full UI Review：完整 UI 審查，自動判斷應執行哪些 skill 並輸出整合報告
   ② UI Phase Guide：Explore → Design → Review → Handoff 各階段的 UI 工作清單
-  ③ UI Handoff Checklist：交付前的 12 項 UI 規格檢核，涵蓋視覺、元件、Token、響應式
+  ③ UI Handoff Checklist：交付前 12 項 UI 規格檢核（視覺、元件、Token、響應式）
   ④ Prototype-First Workflow Guide：不依賴 Figma 的設計系統建立路徑
 
-  使用此 skill 的時機（積極觸發）：
-  - 使用者說「幫我做完整的 UI 審查」、「這個設計 UI 上有哪些問題」、「全面看一下 UI 品質」
-  - 使用者不確定該用 visual-hierarchy-checker、interaction-pattern-advisor 還是其他 UI skill
-  - 使用者說「我們要開始建設計系統」、「prototype-first 的 UI 流程怎麼跑」
-  - 使用者準備設計交付，詢問「UI 規格還缺什麼」、「token 有沒有標好」
-  - 使用者說「現在在設計哪個階段，UI 應該做什麼」
-  - 關鍵詞：「UI review」、「UI 品質」、「設計系統建立」、「UI 交付」、「視覺品質整體看」、「UI 哪裡有問題」、「UI 入口」
+  使用時機：使用者說「幫我做完整的 UI 審查」「這個設計 UI 上有哪些問題」「全面看一下 UI 品質」；不確定該用哪個 UI skill；要建立設計系統或 prototype-first 流程；準備設計交付詢問規格是否齊全；詢問目前設計階段該做什麼。關鍵詞：「UI review」「UI 品質」「設計系統建立」「UI 交付」「UI 哪裡有問題」「UI 入口」
 
-  與其他 skills 的邊界：
-  - product-ux-advisor → UX 層面（可用性、認知負荷、流程效率、無障礙）的調度入口
-  - product-ui-advisor → UI 層面（視覺、元件、設計系統、交付規格）的調度入口（本 skill）
-  兩者分工：product-ux-advisor 問「這個設計好不好用」；product-ui-advisor 問「這個設計的視覺與規格是否完整正確」。
-  不觸發條件：使用者問「這個流程步驟太多嗎」→ 使用 flow-friction-analyzer（屬 UX 層）；問「WCAG 無障礙合規嗎」→ 使用 a11y-consultant；問「資訊太複雜認知負荷太高嗎」→ 使用 cognitive-load-audit
+  與 product-ux-advisor 的分工：product-ux-advisor 處理 UX 層（可用性、認知負荷、流程效率、無障礙），本 skill 處理 UI 層（視覺、元件、設計系統、交付規格）。不觸發條件：問流程步驟太多 → flow-friction-analyzer；問 WCAG 合規 → a11y-consultant；問認知負荷 → cognitive-load-audit
 ---
 
 # 產品 UI 顧問
