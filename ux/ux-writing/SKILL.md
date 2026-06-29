@@ -20,6 +20,24 @@ the rules below and return finished, production-ready text.
 
 ---
 
+## DI Brand Voice
+
+> 以下為 DI 品牌層約束，執行所有 copy 任務前先套用。
+
+- **語氣**：中性、清晰、專業（Professional）。不過度親暱，不過度技術化。
+- **人稱**：第二人稱 + 主動語態（you/your）+ 行動導向。說明使用者應做什麼 / 事件將發生什麼。
+- **避免**：術語縮寫、驚嘆號、責備語氣、指代不明的 "this" / "that"。
+- **DIP 產品術語**（保留原文，不翻譯）：Pipeline、Tag、Rule、Entity、Data Bridge、OmniTag、Query Service。
+
+| ✅ 建議 | ❌ 避免 |
+|--------|--------|
+| Enter your password | Your password is incorrect |
+| No results found. Try a different keyword | No results found |
+| Select a date to continue | Please select a date |
+| Email format is incorrect | Invalid input |
+
+---
+
 ## Three rules that matter most
 
 These three patterns account for the most common mistakes. Check them first on every

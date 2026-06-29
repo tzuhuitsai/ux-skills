@@ -29,6 +29,30 @@ description: |
 
 ---
 
+## DI Design System 參照
+
+> 編譯交付文件時，Token 清單與規格值以 DI Design System 為準。
+> 完整規格查 project knowledge `design.md`。
+
+### 輸出時使用 DI Token 命名
+
+- **色彩**：用 Semantic / Component Token 名，不輸出 raw hex（除非工程師明確要求）
+  - ✅ `Button/Filled/Background/Default`
+  - ❌ `#7d8eca`
+- **字型**：用 `body/medium`、`label/large - prominent` 等 token 名
+- **間距**：用 `spacing-sm`（16px）等 token 名
+- **Elevation**：用 `Elevation / 2` 等 Figma style 名
+
+### 核心 Token 快查
+
+| 類型 | 有效值 |
+|------|--------|
+| Spacing | `spacing-xxs` 4px / `spacing-xs` 8px / `spacing-sm` 16px / `spacing-md` 24px / `spacing-lg` 32px / `spacing-xl` 48px / `spacing-xxl` 64px |
+| Border radius | 元件 16px / 大型容器 24px |
+| Elevation | 1–5（對應 shadow + surface 組合）|
+
+---
+
 ## 執行前確認
 
 在開始編譯前，先確認哪些前置 skill 已完成：
