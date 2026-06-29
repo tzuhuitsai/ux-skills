@@ -28,6 +28,36 @@ description: |
 
 ---
 
+## DI Design System 字型層級
+
+> 診斷「維度 1：字型層級系統」時，以 DI 的雙字體層級為標準。
+
+### 字體角色分工
+
+| 字體 | 層級 | Token |
+|------|------|-------|
+| **Poppins Medium** | 展示 / 頁面標題 | `display/*`, `headline/*` |
+| **Lato Bold** | 元件 / 區塊標題 | `title/*` |
+| **Lato Regular** | 內文 | `body/*` |
+| **Lato（各 weight）** | 互動元件 | `label/*` |
+
+**Poppins ↔ Lato 切換本身即是視覺層級信號，不依賴字號差異。**
+
+### DI 常見字型違規
+
+| 情境 | 錯誤 | 正確 |
+|------|------|------|
+| 頁面主標題 | `title/large`（Lato）| `headline/small`（Poppins）|
+| Button 文字 | `body/medium` | `label/large - prominent` |
+| Card 內小標 | `title/medium` | `title/small` |
+| Hint text | `body/medium` | `body/small` |
+
+### 每頁字型層級上限
+
+每個畫面限用 **2–3 層** 字型樣式；超過即為認知負荷問題。
+
+---
+
 ## 輸入處理
 
 - **截圖 / 設計圖**：直接分析視覺元素的權重分布

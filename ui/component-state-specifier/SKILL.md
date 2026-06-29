@@ -27,6 +27,48 @@ description: |
 
 ---
 
+## DI Design System 元件規範
+
+> 輸出狀態規格時，使用以下 DI 命名慣例。完整 token 值查 project knowledge `design.md`。
+
+### DI 標準狀態模型
+
+```
+Enabled → Hovered → Focused → Error / Error-hover → Disabled → Read only
+```
+
+依元件類型增減（如 Toggle 有 Selected；Checkbox 有 Indeterminate）。
+
+### Figma Component Set 命名
+
+- 格式：PascalCase，`Button/Primary/Enabled`
+- Variant 維度：`State`, `Brand`, `Size`
+- 命名範例：`Button/Filled/Background/Default`
+
+### 狀態 Token 對照（DI 格式）
+
+```
+[Component]/[Style]/[Part]/[State]
+Button/Filled/Background/Hover
+Button/Filled/Text/Disabled
+Input/Outlined/Border/Focused
+Input/Outlined/Border/Error
+```
+
+### DI Typography — 互動元件對應
+
+| 元件部位 | Token |
+|---------|-------|
+| Primary Button 文字 | `label/large - prominent`（14px Bold）|
+| Secondary / Ghost Button 文字 | `label/large`（14px Regular）|
+| Input text / Placeholder | `body/large`（16px Regular）|
+| Input Label — 未啟用態 | `body/large`（與 input text 同尺寸）|
+| Input Label — 啟用態（浮動）| `label/medium - prominent`（12px Bold，DI 客製）|
+| Hint text | `body/small`（12px Regular）|
+| Badge / Tag 內文 | `label/small`（11px Regular）|
+
+---
+
 ## 輸入處理
 
 使用者提供：
