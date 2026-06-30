@@ -37,38 +37,29 @@ description: |
 
 ---
 
-## DI Design System 密度規格
+## Design System 參照（若有）
 
-> 密度決策時，以 DI 的間距 token 與字型規格為參照基準。
+執行前，檢查工作目錄（含上層、平行目錄）是否存在設計系統參照檔，
+常見檔名：`design.md`、`design-system.md`、`tokens.md`，
+常見路徑：`./design.md`、`../design-system/design.md`、`./docs/design.md`。
 
-### 有效 Spacing Token
+- **若找到** → 讀取其中的 Color Token、Typography Token、Spacing、
+  Elevation、Component 狀態模型、Voice & Tone 等定義，
+  在本 skill 的輸出中優先使用該專案的命名與數值。
+- **若找不到** → 使用本 skill下方的通用最佳實踐（業界標準），
+  並在輸出末尾註明：「未偵測到專案設計系統參照檔，以下為通用建議；
+  如有 design.md 請提供路徑以套用專案規格」。
 
-| Token | px | 使用情境 |
-|-------|----|---------|
-| `spacing-xxs` | 4 | 元件內緊密間距 |
-| `spacing-xs` | 8 | 元件內標準間距 |
-| `spacing-sm` | 16 | 元件間距、表單列間距 |
-| `spacing-md` | 24 | 區塊間距、卡片 padding |
-| `spacing-lg` | 32 | 頁面 margin |
-| `spacing-xl` | 48 | 大型區塊分隔 |
-| `spacing-xxl` | 64 | 頁面級超大間距 |
+不主動假設特定專案（如 DIP、Tiresias）的數值；一切以實際讀到的
+design.md 內容為準。
 
-**非 4px 倍數的間距值 → 需替換為 token。**
+### 讀到 design.md 後的套用方式
 
-### DI 字型密度對照
-
-| 場景 | Token | 理由 |
-|------|-------|------|
-| 高密度表格（Datagrid）內文 | `body/small`（12px）| B2B 密度優先 |
-| 表單 Hint text | `body/small`（12px）| 層級清楚、節省空間 |
-| 主要說明文字 | `body/medium`（14px）| 連續性唯讀文本 |
-| Input text / Placeholder | `body/large`（16px）| MD3 標準，不可調小 |
-
-### 資料表格對齊規則
-
-- **數值**：靠右對齊（利於比較）
-- **文字**：靠左對齊
-- **語義色**：數值上升 → Success 40（`#359029`）；下降 → Error 60（`#f15748`）
+- 間距判斷時，對照 design.md 的 Spacing Token 清單，
+  非 token 倍數的值標記為需替換。
+- 字級密度建議（如 hint text、表格內文用哪個字級），
+  對照 design.md 的 Typography Token 使用指引。
+- 若 design.md 未提供，使用通用 4px/8px grid 假設。
 
 ---
 

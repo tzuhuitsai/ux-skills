@@ -27,45 +27,30 @@ description: |
 
 ---
 
-## DI Design System 元件規範
+## Design System 參照（若有）
 
-> 輸出狀態規格時，使用以下 DI 命名慣例。完整 token 值查 project knowledge `design.md`。
+執行前，檢查工作目錄（含上層、平行目錄）是否存在設計系統參照檔，
+常見檔名：`design.md`、`design-system.md`、`tokens.md`，
+常見路徑：`./design.md`、`../design-system/design.md`、`./docs/design.md`。
 
-### DI 標準狀態模型
+- **若找到** → 讀取其中的 Color Token、Typography Token、Spacing、
+  Elevation、Component 狀態模型、Voice & Tone 等定義，
+  在本 skill 的輸出中優先使用該專案的命名與數值。
+- **若找不到** → 使用本 skill下方的通用最佳實踐（業界標準），
+  並在輸出末尾註明：「未偵測到專案設計系統參照檔，以下為通用建議；
+  如有 design.md 請提供路徑以套用專案規格」。
 
-```
-Enabled → Hovered → Focused → Error / Error-hover → Disabled → Read only
-```
+不主動假設特定專案（如 DIP、Tiresias）的數值；一切以實際讀到的
+design.md 內容為準。
 
-依元件類型增減（如 Toggle 有 Selected；Checkbox 有 Indeterminate）。
+### 讀到 design.md 後的套用方式
 
-### Figma Component Set 命名
-
-- 格式：PascalCase，`Button/Primary/Enabled`
-- Variant 維度：`State`, `Brand`, `Size`
-- 命名範例：`Button/Filled/Background/Default`
-
-### 狀態 Token 對照（DI 格式）
-
-```
-[Component]/[Style]/[Part]/[State]
-Button/Filled/Background/Hover
-Button/Filled/Text/Disabled
-Input/Outlined/Border/Focused
-Input/Outlined/Border/Error
-```
-
-### DI Typography — 互動元件對應
-
-| 元件部位 | Token |
-|---------|-------|
-| Primary Button 文字 | `label/large - prominent`（14px Bold）|
-| Secondary / Ghost Button 文字 | `label/large`（14px Regular）|
-| Input text / Placeholder | `body/large`（16px Regular）|
-| Input Label — 未啟用態 | `body/large`（與 input text 同尺寸）|
-| Input Label — 啟用態（浮動）| `label/medium - prominent`（12px Bold，DI 客製）|
-| Hint text | `body/small`（12px Regular）|
-| Badge / Tag 內文 | `label/small`（11px Regular）|
+- 狀態清單（Default/Hover/Focus...）的**命名與順序**，若 design.md
+  有定義專案專屬的狀態模型，優先採用該模型，而非本 skill 的通用六態。
+- Token 命名格式，採用 design.md 裡記載的格式（如有），
+  否則使用本 skill 下方提供的通用 Token 命名慣例。
+- 字型 Token（按鈕文字、輸入框文字等）對應，依 design.md 的
+  Typography Token 表決定，否則使用通用字級建議。
 
 ---
 

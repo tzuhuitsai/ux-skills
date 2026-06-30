@@ -20,21 +20,17 @@ the rules below and return finished, production-ready text.
 
 ---
 
-## DI Brand Voice
+## Project Voice & Tone Reference (if available)
 
-> 以下為 DI 品牌層約束，執行所有 copy 任務前先套用。
+Before writing copy, check whether a design system reference file
+(`design.md`, `design-system.md`, etc.) exists in the working directory
+or nearby paths.
 
-- **語氣**：中性、清晰、專業（Professional）。不過度親暱，不過度技術化。
-- **人稱**：第二人稱 + 主動語態（you/your）+ 行動導向。說明使用者應做什麼 / 事件將發生什麼。
-- **避免**：術語縮寫、驚嘆號、責備語氣、指代不明的 "this" / "that"。
-- **DIP 產品術語**（保留原文，不翻譯）：Pipeline、Tag、Rule、Entity、Data Bridge、OmniTag、Query Service。
-
-| ✅ 建議 | ❌ 避免 |
-|--------|--------|
-| Enter your password | Your password is incorrect |
-| No results found. Try a different keyword | No results found |
-| Select a date to continue | Please select a date |
-| Email format is incorrect | Invalid input |
+- **If found** → look for a Voice & Tone / Brand Voice section and apply
+  its specific constraints (tone, person, banned words, product terms
+  to preserve untranslated) on top of the rules below.
+- **If not found** → apply the rules below as-is (these are
+  project-agnostic defaults already aligned with general best practice).
 
 ---
 

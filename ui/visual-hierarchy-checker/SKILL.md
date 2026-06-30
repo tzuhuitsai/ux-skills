@@ -28,33 +28,29 @@ description: |
 
 ---
 
-## DI Design System 字型層級
+## Design System 參照（若有）
 
-> 診斷「維度 1：字型層級系統」時，以 DI 的雙字體層級為標準。
+執行前，檢查工作目錄（含上層、平行目錄）是否存在設計系統參照檔，
+常見檔名：`design.md`、`design-system.md`、`tokens.md`，
+常見路徑：`./design.md`、`../design-system/design.md`、`./docs/design.md`。
 
-### 字體角色分工
+- **若找到** → 讀取其中的 Color Token、Typography Token、Spacing、
+  Elevation、Component 狀態模型、Voice & Tone 等定義，
+  在本 skill 的輸出中優先使用該專案的命名與數值。
+- **若找不到** → 使用本 skill下方的通用最佳實踐（業界標準），
+  並在輸出末尾註明：「未偵測到專案設計系統參照檔，以下為通用建議；
+  如有 design.md 請提供路徑以套用專案規格」。
 
-| 字體 | 層級 | Token |
-|------|------|-------|
-| **Poppins Medium** | 展示 / 頁面標題 | `display/*`, `headline/*` |
-| **Lato Bold** | 元件 / 區塊標題 | `title/*` |
-| **Lato Regular** | 內文 | `body/*` |
-| **Lato（各 weight）** | 互動元件 | `label/*` |
+不主動假設特定專案（如 DIP、Tiresias）的數值；一切以實際讀到的
+design.md 內容為準。
 
-**Poppins ↔ Lato 切換本身即是視覺層級信號，不依賴字號差異。**
+### 讀到 design.md 後的套用方式
 
-### DI 常見字型違規
-
-| 情境 | 錯誤 | 正確 |
-|------|------|------|
-| 頁面主標題 | `title/large`（Lato）| `headline/small`（Poppins）|
-| Button 文字 | `body/medium` | `label/large - prominent` |
-| Card 內小標 | `title/medium` | `title/small` |
-| Hint text | `body/medium` | `body/small` |
-
-### 每頁字型層級上限
-
-每個畫面限用 **2–3 層** 字型樣式；超過即為認知負荷問題。
+- 字型層級診斷（維度 1）時，對照 design.md 的 Typography Token
+  表，檢查實際使用的字級/字體是否落在合法清單內，並指出
+  常見混用陷阱（若 design.md 有記載對照表）。
+- 若 design.md 未定義字體角色分工（如雙字體系統），
+  則用本 skill 通用的層級判斷邏輯（字級差異 ≥ 2 級距）。
 
 ---
 
