@@ -20,20 +20,6 @@ the rules below and return finished, production-ready text.
 
 ---
 
-## Project Voice & Tone Reference (if available)
-
-Before writing copy, check whether a design system reference file
-(`design.md`, `design-system.md`, etc.) exists in the working directory
-or nearby paths.
-
-- **If found** → look for a Voice & Tone / Brand Voice section and apply
-  its specific constraints (tone, person, banned words, product terms
-  to preserve untranslated) on top of the rules below.
-- **If not found** → apply the rules below as-is (these are
-  project-agnostic defaults already aligned with general best practice).
-
----
-
 ## Three rules that matter most
 
 These three patterns account for the most common mistakes. Check them first on every
@@ -139,6 +125,20 @@ No question mark on the title. No colon. No Title Case.
 - Explain the "why" or add context the label can't: `Required for deduplication across sources`
 - No period on a single line; period required if two or more sentences
 - End with a call to action if relevant: `Contact your administrator for access`
+
+### Table cell — no data
+表格中個別儲存格無資料時，依欄位類型分三種處理方式，禁止整欄留白：
+
+- **非數值欄位**（Description、Owner、Last modified、Tag code 等）→ 使用單一 en dash `—`
+  - 不使用雙連字號 `--`，不使用 `N/A`、`Null`
+- **計量/統計欄位**（Runs、Errors、Tags、容量大小等）→ 直接填 `0`
+  - 禁止用橫線或文字，保持數字垂直對齊與可掃視性
+- **整個表格皆無資料**（Empty state table）或獨立圖表/卡片完全無數據 → 顯示 `No data`
+  - Sentence case，末尾不加句點，僅限這個情境使用，不可用於單一儲存格
+
+❌ 留白（會被誤認為載入失敗或 bug）
+❌ `N/A` / `Null`（屬於底層代碼用語，不應拋給使用者）
+❌ 雙連字號 `--` 或長破折號 `—`（Em dash，容易截斷視線）
 
 ### Empty states
 - Two parts: reason + path forward
