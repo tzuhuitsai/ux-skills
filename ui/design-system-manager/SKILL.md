@@ -32,71 +32,31 @@ description: |
 
 ---
 
-## DI Design System 規格參照
+## Design System 參照（若有）
 
-> 執行 audit / document / extend 前，以此為 DI 的有效值標準。
-> 完整 hex 與 token 規格查 project knowledge `design.md`。
+執行前，檢查工作目錄（含上層、平行目錄）是否存在設計系統參照檔，
+常見檔名：`design.md`、`design-system.md`、`tokens.md`，
+常見路徑：`./design.md`、`../design-system/design.md`、`./docs/design.md`。
 
-### Token 命名格式
+- **若找到** → 讀取其中的 Color Token、Typography Token、Spacing、
+  Elevation、Component 狀態模型、Voice & Tone 等定義，
+  在本 skill 的輸出中優先使用該專案的命名與數值。
+- **若找不到** → 使用本 skill下方的通用最佳實踐（業界標準），
+  並在輸出末尾註明：「未偵測到專案設計系統參照檔，以下為通用建議；
+  如有 design.md 請提供路徑以套用專案規格」。
 
-```
-[Component]/[Variant]/[Selection]/[Style]/[Part]/[Subpart]/[State]
-```
+不主動假設特定專案（如 DIP、Tiresias）的數值；一切以實際讀到的
+design.md 內容為準。
 
-| 層 | 說明 | 範例 |
-|----|------|------|
-| component | 元件名 | `Button`, `Chips`, `Snackbar` |
-| variant | 功能變體 | `Filter`, `Assist`, `Primary` |
-| selection | 選取狀態（主要用於 Chips）| `Selected`, `Unselected` |
-| style | 視覺樣式 | `Filled`, `Outlined` |
-| part | 主要結構部位 | `Background`, `Text`, `Border` |
-| subpart | 細分部位 | `Icon`, `Close-button` |
-| state | 互動狀態 | `Hover`, `Focused`, `Error`, `Disabled` |
+### 讀到 design.md 後的套用方式
 
-- Shared tokens：`Component/Shared/Text/Main`（跨元件共用）
-- Component tokens：僅特定元件使用，如 `Button/Filled/Background/Default`
-
-### 有效 Spacing 值
-
-| Token | px |
-|-------|----|
-| `spacing-xxs` | 4 |
-| `spacing-xs` | 8 |
-| `spacing-sm` | 16 |
-| `spacing-md` | 24 |
-| `spacing-lg` | 32 |
-| `spacing-xl` | 48 |
-| `spacing-xxl` | 64 |
-
-**非 4px 倍數的間距值 → P1 違規。**
-
-### 有效 Typography Token 名稱
-
-```
-display/large, display/medium, display/small
-headline/large, headline/medium, headline/small    ← Poppins Medium
-title/large (24px), title/medium (18px), title/small (14px)    ← Lato Bold
-body/large (16px), body/medium (14px), body/small (12px)       ← Lato Regular
-label/large - prominent, label/large
-label/medium - prominent, label/medium, label/small            ← Lato
-```
-
-**字型尺寸不在以上清單的 → P1 違規。**
-
-### 有效 Elevation 值（Box Shadow）
-
-| Level | Shadow |
-|-------|--------|
-| 1 | `0px 1px 2px 0px rgba(0,0,0,0.3), 0px 1px 3px 1px rgba(0,0,0,0.15)` |
-| 2 | `0px 1px 2px 0px rgba(0,0,0,0.3), 0px 2px 6px 2px rgba(0,0,0,0.15)` |
-| 3 | `0px 1px 3px 0px rgba(0,0,0,0.3), 0px 4px 8px 3px rgba(0,0,0,0.15)` |
-| 4 | `0px 2px 3px 0px rgba(0,0,0,0.3), 0px 6px 10px 4px rgba(0,0,0,0.15)` |
-| 5 | `0px 4px 4px 0px rgba(0,0,0,0.3), 0px 8px 12px 6px rgba(0,0,0,0.15)` |
-
-### 有效 Border Radius
-
-- 元件卡片：`16px`
-- 頁面級大型容器：`24px`（`corner/extra-large`）
+- **audit 模式**：把 design.md 的 Token 清單當作「合法值清單」，
+  掃描出的 hardcoded 值若不在清單內 → 標記違規（依嚴重度分級）。
+- **document 模式**：元件規格文件裡的 Token 映射，直接引用
+  design.md 裡對應的命名格式（而非自創）。
+- **extend 模式**：新元件的 Token 命名，依照 design.md 裡記載的
+  既有命名格式（如 `[Component]/[Variant]/[Part]/[State]`）延伸，
+  保持與既有系統一致。
 
 ---
 

@@ -29,27 +29,30 @@ description: |
 
 ---
 
-## DI Design System 參照
+## Design System 參照（若有）
 
-> 編譯交付文件時，Token 清單與規格值以 DI Design System 為準。
-> 完整規格查 project knowledge `design.md`。
+執行前，檢查工作目錄（含上層、平行目錄）是否存在設計系統參照檔，
+常見檔名：`design.md`、`design-system.md`、`tokens.md`，
+常見路徑：`./design.md`、`../design-system/design.md`、`./docs/design.md`。
 
-### 輸出時使用 DI Token 命名
+- **若找到** → 讀取其中的 Color Token、Typography Token、Spacing、
+  Elevation、Component 狀態模型、Voice & Tone 等定義，
+  在本 skill 的輸出中優先使用該專案的命名與數值。
+- **若找不到** → 使用本 skill下方的通用最佳實踐（業界標準），
+  並在輸出末尾註明：「未偵測到專案設計系統參照檔，以下為通用建議；
+  如有 design.md 請提供路徑以套用專案規格」。
 
-- **色彩**：用 Semantic / Component Token 名，不輸出 raw hex（除非工程師明確要求）
-  - ✅ `Button/Filled/Background/Default`
-  - ❌ `#7d8eca`
-- **字型**：用 `body/medium`、`label/large - prominent` 等 token 名
-- **間距**：用 `spacing-sm`（16px）等 token 名
-- **Elevation**：用 `Elevation / 2` 等 Figma style 名
+不主動假設特定專案（如 DIP、Tiresias）的數值；一切以實際讀到的
+design.md 內容為準。
 
-### 核心 Token 快查
+### 讀到 design.md 後的套用方式
 
-| 類型 | 有效值 |
-|------|--------|
-| Spacing | `spacing-xxs` 4px / `spacing-xs` 8px / `spacing-sm` 16px / `spacing-md` 24px / `spacing-lg` 32px / `spacing-xl` 48px / `spacing-xxl` 64px |
-| Border radius | 元件 16px / 大型容器 24px |
-| Elevation | 1–5（對應 shadow + surface 組合）|
+- 交付文件裡的 Token 清單區塊，輸出**該專案的 Token 名稱**
+  （如 `Button/Filled/Background/Default`），而非 raw hex 或通用佔位字。
+- Spacing、Elevation、Radius 等規格值，直接引用 design.md 裡的定義。
+- 若 design.md 不存在，交付文件的 Token 欄位標注
+  「[待補：專案無設計系統參照檔，請工程師確認實際數值]」，
+  不可自行杜撰數值。
 
 ---
 
