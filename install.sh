@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 # Installs all skills in this repo to ~/.claude/skills/
-# Supports both flat (skill/SKILL.md) and categorized (category/skill/SKILL.md) layouts.
 
 set -euo pipefail
 
@@ -11,21 +10,16 @@ installed=0
 skipped=0
 
 while IFS= read -r skill_md; do
-  rel="${skill_md#"$REPO_DIR/"}"   # e.g. ui/product-ui-advisor/SKILL.md
+  rel="${skill_md#"$REPO_DIR/"}"   # e.g. ux-writing/SKILL.md
   parts_count=$(echo "$rel" | tr '/' '\n' | wc -l)
 
-  if [ "$parts_count" -eq 2 ]; then
-    # flat: skill-name/SKILL.md
-    skill_name=$(dirname "$rel")
-  elif [ "$parts_count" -eq 3 ]; then
-    # categorized: category/skill-name/SKILL.md
-    skill_name=$(echo "$rel" | cut -d'/' -f2)
-  else
+  if [ "$parts_count" -ne 2 ]; then
     echo "⚠ skipped (unexpected depth): $rel"
     skipped=$((skipped + 1))
     continue
   fi
 
+  skill_name=$(dirname "$rel")
   dest="$SKILLS_DIR/$skill_name"
   mkdir -p "$dest"
   cp "$skill_md" "$dest/SKILL.md"
