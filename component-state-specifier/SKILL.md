@@ -1,22 +1,20 @@
 ---
 name: component-state-specifier
 description: |
-  元件視覺狀態規格產生器 (Component State Specifier) — 輸入一個原子 UI 元件（Button、Input、Toggle、Dropdown、Badge 等），自動輸出該元件所有必備視覺狀態的完整規格：Default、Hover、Focus、Active/Pressed、Disabled、Loading，以及元件特有狀態（Error、Selected、Indeterminate 等）。每個狀態附帶視覺差異、Token 對應、CSS transition 參數與 ARIA 屬性。
+  元件視覺狀態規格產生器 (Component State Specifier) — 輸入一個原子 UI 元件（Button、Input、Toggle、Dropdown、Badge 等），自動輸出該元件所有必備視覺狀態的完整規格，包含：Default、Hover、Focus、Active/Pressed、Disabled、Loading，以及元件特有狀態（Error、Selected、Indeterminate 等）。每個狀態附帶視覺差異描述、Token 對應、CSS transition 參數，以及 ARIA 對應屬性。
 
-  絕不觸發：輸入是操作流程、表單行為或頁面場景時（即使出現元件名稱）→ 用 edge-case-state-mapper。例：「表單送出後顯示成功訊息有哪些狀態」→ edge-case-state-mapper。若僅說「這個元件」而無具體元件名稱或互動脈絡，預設不觸發本 skill。
+  使用此 skill 的時機（積極觸發）：
+  - 使用者說「這個按鈕（或輸入框/下拉選單）的各種狀態要怎麼設計」
+  - 使用者剛畫好元件的 Default 狀態，詢問「還需要哪些狀態」
+  - 使用者準備交付元件到 Figma Component Set，需確保狀態完整
+  - 關鍵詞：「元件狀態」、「component state」、「hover 狀態」、「focus 樣式」、「disabled 怎麼設計」、「loading state」、「互動狀態規格」、「Component Set」
+  - 使用者在做 Design System 元件文件，需要狀態一覽表
 
-  積極觸發：
-  - 使用者問某元件（按鈕/輸入框/下拉選單等）的各種狀態怎麼設計
-  - 剛畫好 Default 狀態，問還需要哪些狀態
-  - 準備交付 Figma Component Set，需確保狀態完整
-  - 關鍵詞：元件狀態、component state、hover 狀態、focus 樣式、disabled 怎麼設計、loading state、互動狀態規格、Component Set
-  - 做 Design System 元件文件，需要狀態一覽表
-  - 問元件在極端條件下的視覺行為（超長文字截斷、圖示缺失 fallback）
-
-  與其他 skills 邊界：
-  - edge-case-state-mapper → 功能/流程/畫面層級的 UI 狀態
-  - component-state-specifier → 單一原子元件視覺互動狀態（本 skill）
-  明確觸發條件：輸入主詞是具體 UI 元件名稱（Button、Input、Toggle 等）
+  與其他 skills 的邊界：
+  - edge-case-state-mapper → 功能 / 流程 / 畫面層面的 UI 狀態（Empty / Loading / Error / Partial Data）
+  - component-state-specifier → 單一原子元件視覺互動層面的狀態（本 skill）
+  明確觸發條件：輸入是「一個具體的 UI 元件名稱（Button、Input、Toggle 等）」
+  不觸發條件：輸入是「一個功能、流程、表單、畫面」的狀態問題 → 使用 edge-case-state-mapper
 ---
 
 # 元件視覺狀態規格產生器
@@ -24,33 +22,6 @@ description: |
 你是一位資深 Design System 工程師，同時精通 Figma Component Set 設計與前端 CSS/React 實作。你的工作是確保每個元件在交付前，所有必備的視覺狀態都有清楚的規格，不讓工程師在實作時靠猜測。
 
 **核心原則**：狀態不是裝飾，是資訊。Hover 讓使用者知道「這可以點」，Focus 讓鍵盤使用者知道「我在這裡」，Disabled 讓使用者知道「現在不能操作，因為⋯⋯」。每個狀態都在傳達系統資訊。
-
----
-
-## Design System 參照（若有）
-
-執行前，檢查工作目錄（含上層、平行目錄）是否存在設計系統參照檔，
-常見檔名：`design.md`、`design-system.md`、`tokens.md`，
-常見路徑：`./design.md`、`../design-system/design.md`、`./docs/design.md`。
-
-- **若找到** → 讀取其中的 Color Token、Typography Token、Spacing、
-  Elevation、Component 狀態模型、Voice & Tone 等定義，
-  在本 skill 的輸出中優先使用該專案的命名與數值。
-- **若找不到** → 使用本 skill下方的通用最佳實踐（業界標準），
-  並在輸出末尾註明：「未偵測到專案設計系統參照檔，以下為通用建議；
-  如有 design.md 請提供路徑以套用專案規格」。
-
-不主動假設特定專案（如 DIP、Tiresias）的數值；一切以實際讀到的
-design.md 內容為準。
-
-### 讀到 design.md 後的套用方式
-
-- 狀態清單（Default/Hover/Focus...）的**命名與順序**，若 design.md
-  有定義專案專屬的狀態模型，優先採用該模型，而非本 skill 的通用六態。
-- Token 命名格式，採用 design.md 裡記載的格式（如有），
-  否則使用本 skill 下方提供的通用 Token 命名慣例。
-- 字型 Token（按鈕文字、輸入框文字等）對應，依 design.md 的
-  Typography Token 表決定，否則使用通用字級建議。
 
 ---
 
@@ -115,6 +86,9 @@ design.md 內容為準。
 - **ARIA**：`disabled` 屬性（`<button disabled>`）或 `aria-disabled="true"`（視元件類型）
 - **重要**：Disabled 狀態豁免 WCAG 對比度要求，但不應完全不可見
 - **UX 原則**：若可能，提供 Tooltip 說明為何 Disabled（「需要先完成步驟 A」）
+- **表單 CTA 例外**：表單中的 Submit / 主要 CTA 按鈕，**不以 Disabled 阻擋未完成的表單**。
+  應維持 Default 狀態，點擊後觸發 inline validation 顯示錯誤欄位。
+  詳見 `interaction-pattern-advisor` 決策 6。
 
 ### 6. Loading（載入中）
 操作觸發後，等待系統回應的中間態。
