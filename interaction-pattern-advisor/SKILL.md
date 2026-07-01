@@ -164,6 +164,31 @@ description: |
 
 ---
 
+### 決策 6：表單 CTA — Disabled 攔截 vs Active + Inline Validation
+
+| 模式 | 機制 | 問題 |
+|------|------|------|
+| **Disabled CTA**（不推薦）| 表單未填完前 Submit 按鈕維持 Disabled | 使用者不知道「為什麼不能按」，找不到未完成的欄位 |
+| **Active CTA + Inline Validation**（推薦）| Submit 按鈕永遠可點；按下後對未完成欄位逐一顯示 inline error | 使用者清楚看到哪些欄位需要補填 |
+
+**DI 設計系統原則：表單中不以 Disabled 按鈕阻擋使用者。**
+
+使用者體驗的核心問題：Disabled CTA 把錯誤藏起來了。使用者不知道需要做什麼才能讓按鈕「亮起來」，尤其是長表單或跨頁籤的情境，容易造成挫折感與放棄率上升。
+
+**推薦做法**：
+- Submit / 主要 CTA 按鈕維持 **Default（可點）** 狀態
+- 使用者點擊後，對每個未通過驗證的欄位顯示 **inline error message**（欄位邊框轉 `semantic.error`，欄位下方出現錯誤文字）
+- 若表單有多個 section，自動捲動至第一個錯誤欄位
+
+**Disabled CTA 仍然適用的情境**（例外）：
+- 使用者剛完成一個不可逆操作，等待系統確認期間（→ 此時應改用 Loading 狀態）
+- 權限不足，操作在系統層面根本無法執行（→ 搭配 Tooltip 說明原因）
+
+> 元件層的 Disabled 狀態規格見 `component-state-specifier`；
+> 表單 inline error 文案規則見 `ux-writing` skill 的 `### Error messages`。
+
+---
+
 ## 輸出格式
 
 ```
